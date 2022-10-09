@@ -1,0 +1,479 @@
+<html>
+
+<!-- CSS styles go here -->
+<style>
+/* Element styles */
+body{
+    background-image: url("https://static.wixstatic.com/media/5a3c7a_2eeeeb2603fc4f52b15cc5e103595a8d~mv2.jpg");
+    background-origin: content-box;
+    background-position-x: center;
+    background-size: 20em 48em;
+    background-repeat: no-repeat;
+    text-align: left;
+    color: white;
+}
+input{
+    background-color: lightgreen;
+    border: 1px solid black;
+    border-radius: 2px;
+    width: 3.25em;
+    height: 2.1em;
+    font-size: small;
+    margin-right:7.35em;
+    text-align: center;
+}
+input.cb{
+    margin: 0em;
+    width: 1em;
+}
+select{
+    appearance: none;
+}
+/* Class styles */
+.content{
+    max-width: 22em;
+    margin: auto;
+}
+.cbRow{
+    display: flex;
+    width: 2.65em;
+    justify-content: space-between;
+    background-color: black;
+    height: 1.65em;
+    margin-left: 16.4em;
+}
+.numberSelector{
+    color: black;
+    background-color: rgb(216, 196, 254);
+    border-color: black;
+    border-radius: 2px;
+    height: 1.65em;
+    width: 2.6em;
+    font-size: medium;
+    margin-right: 6em;
+    text-align: center;
+}
+.topRow{
+    justify-content: flex-end;
+    align-items: flex-end;
+    height: 5.6em;
+    margin-bottom: 2.75em;
+}
+.flexRow{
+    display: flex;
+    width: 25em;
+    justify-content: flex-end;
+}
+/* ID styles */
+#nameBox{
+    background-color: transparent;
+    border-width: 0px;
+    font-size: medium;
+    height: 1.4em;
+    width: 6.8em;
+    margin-right: 10.3em;
+    text-align: center;
+}
+#nameBox:focus{
+    outline: none !important
+}
+#twosList{
+    height: 1.67em;
+}
+#threesList{
+    height: 1.67em;
+}
+#foursList{
+    height: 1.69em;
+}
+#fivesList{
+    height: 1.68em;
+}
+#bonusAmount{
+    height: 2.05em;
+}
+#upperGrandTotal{
+    height: 2.15em;
+    margin-bottom: 2.55em;
+}
+#threeKindList{
+    height: 1.67em;
+}
+#fourKindList{
+    height: 1.68em;
+}
+#fullHouseList{
+    height: 1.69em;
+}
+#lgStraightList{
+    height: 1.69em;
+}
+#yahtzeeList{
+    height: 1.69em;
+}
+#chanceList{
+    height: 1.69em;
+}
+#bonusYahtzeeScore{
+    height: 2.1em;
+}
+#lowerTotal{
+    height: 2.05em;
+}
+#bottomUpperTotal{
+    height: 2.05em;
+}
+#grandTotal{
+    height: 2.15em;
+}
+
+</style>
+
+<!-- body -->
+<body class="content">  
+
+    <form>
+
+        <div class="topRow flexRow">
+            <input type="text" id="nameBox" placeholder="Add name...">
+        </div>
+        
+        <div class="flexRow">
+            <select id="onesList" name="onesList" class="numberSelector" onchange="calcEverything()">
+                <option disabled selected value></option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+
+        <div class="flexRow">
+            <select id="twosList" name="twosList" class="numberSelector" onchange="calcEverything()">
+                <option disabled selected value></option>
+                <option value="0">0</option>
+                <option value="2">2</option>
+                <option value="4">4</option>
+                <option value="6">6</option>
+                <option value="8">8</option>
+                <option value="10">10</option>
+            </select>
+        </div>
+
+        <div class="flexRow">
+            <select id="threesList" name="threesList" class="numberSelector" onchange="calcEverything()">
+                <option disabled selected value></option>
+                <option value="0">0</option>
+                <option value="3">3</option>
+                <option value="6">6</option>
+                <option value="9">9</option>
+                <option value="12">12</option>
+                <option value="15">15</option>
+            </select>
+        </div>
+
+        <div class="flexRow">
+            <select id="foursList" name="foursList" class="numberSelector" onchange="calcEverything()">
+                <option disabled selected value></option>
+                <option value="0">0</option>
+                <option value="4">4</option>
+                <option value="8">8</option>
+                <option value="12">12</option>
+                <option value="16">16</option>
+                <option value="20">20</option>
+            </select>
+        </div>
+
+        <div class="flexRow">
+            <select id="fivesList" name="fivesList" class="numberSelector" onchange="calcEverything()">
+                <option disabled selected value></option>
+                <option value="0">0</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="25">25</option>
+            </select>
+        </div>
+
+        <div class="flexRow">
+            <select id="sixesList" name="sixesList" class="numberSelector" onchange="calcEverything()">
+                <option disabled selected value></option>
+                <option value="0">0</option>
+                <option value="6">6</option>
+                <option value="12">12</option>
+                <option value="18">18</option>
+                <option value="24">24</option>
+                <option value="30">30</option>
+            </select>
+        </div>
+        
+        <div class="flexRow">
+            <input id="upperTotal" name="upperTotal" readonly value="0"></input>
+        </div>
+
+        <div class="flexRow">
+            <input id="bonusAmount" name="bonusAmount" readonly value="0"></input>
+        </div>
+
+        <div class="flexRow">
+            <input id="upperGrandTotal" name="upperGrandTotal" readonly value="0"></input>
+        </div>
+
+        <div class="flexRow">
+            <select id="threeKindList" name="threeKindList" class="numberSelector" onchange="calcEverything()">
+                <option disabled selected value></option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+            </select>
+        </div>
+
+        <div class="flexRow">
+            <select id="fourKindList" name="fourKindList" class="numberSelector" onchange="calcEverything()">
+                <option disabled selected value></option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+            </select>
+        </div>
+
+        <div class="flexRow">
+            <select id="fullHouseList" name="fullHouseList" class="numberSelector" onchange="calcEverything()">
+                <option disabled selected value></option>
+                <option value="0">0</option>
+                <option value="25">25</option>
+            </select>
+        </div>
+
+        <div class="flexRow">
+            <select id="smStraightList" name="smStraightList" class="numberSelector" onchange="calcEverything()">
+                <option disabled selected value></option>
+                <option value="0">0</option>
+                <option value="30">30</option>
+            </select>
+        </div>
+
+        <div class="flexRow">
+            <select id="lgStraightList" name="lgStraightList" class="numberSelector" onchange="calcEverything()">
+                <option disabled selected value></option>
+                <option value="0">0</option>
+                <option value="40">40</option>
+            </select>
+        </div>
+
+        <div class="flexRow">
+            <select id="yahtzeeList" name="yahtzeeList" class="numberSelector" onchange="calcEverything()">
+                <option disabled selected value></option>
+                <option value="0">0</option>
+                <option value="50">50</option>
+            </select>
+        </div>
+
+        <div class="flexRow">
+            <select id="chanceList" name="chanceList" class="numberSelector" onchange="calcEverything()">
+                <option disabled selected value></option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+            </select>
+        </div>
+        
+        <div class="cbRow">
+            <input type="checkbox" id="cb1" class="cb" onclick="calcEverything()"></input>
+            <input type="checkbox" id="cb2" class="cb" onclick="calcEverything()"></input>
+            <input type="checkbox" id="cb3" class="cb" onclick="calcEverything()"></input>
+        </div>
+
+        <div class="flexRow">
+            <input id="bonusYahtzeeScore" name="bonusYahtzeeScore" readonly value="0"></input>
+        </div>
+        
+        <div class="flexRow">
+            <input id="lowerTotal" name="lowerTotal" readonly value="0"></input>
+        </div>
+
+        <div class="flexRow">
+            <input id="bottomUpperTotal" name="bottomUpperTotal" readonly value="0"></input>
+        </div>
+
+        <div class="flexRow">
+            <input id="grandTotal" name="grandTotal" readonly value="0"></input>
+        </div>
+        
+    </form>
+
+</body>
+
+<!-- javaScript code goes here -->
+<script>
+    function calcEverything() {
+        calcUpperTotalPreBonus()
+        calcUpperBonus()
+        calcUpperTotalPostBonus()
+        calcYahtzeeBonus()
+        calcLowerTotal()
+        calcGrandTotal()
+    }
+
+    function calcUpperTotalPreBonus() {
+        let onesValue = document.getElementById("onesList").value
+        let twosValue = document.getElementById("twosList").value
+        let threesValue = document.getElementById("threesList").value
+        let foursValue = document.getElementById("foursList").value
+        let fivesValue = document.getElementById("fivesList").value
+        let sixesValue = document.getElementById("sixesList").value
+
+        let tempResult = 0
+        if (onesValue.length > 0) {tempResult += parseInt(onesValue)}
+        if (twosValue.length > 0) {tempResult += parseInt(twosValue)}
+        if (threesValue.length > 0) {tempResult += parseInt(threesValue)}
+        if (foursValue.length > 0) {tempResult += parseInt(foursValue)}
+        if (fivesValue.length > 0) {tempResult += parseInt(fivesValue)}
+        if (sixesValue.length > 0) {tempResult += parseInt(sixesValue)}
+
+        document.getElementById("upperTotal").value = String(tempResult)
+    }
+
+    function calcUpperBonus() {
+        if (parseInt(document.getElementById("upperTotal").value) > 62) {document.getElementById("bonusAmount").value = String(35)}
+        else {document.getElementById("bonusAmount").value = String(0)}
+    }
+
+    function calcUpperTotalPostBonus() {
+        uppertotal = parseInt(document.getElementById("upperTotal").value)
+        upperbonus = parseInt(document.getElementById("bonusAmount").value)
+        document.getElementById("upperGrandTotal").value = String(uppertotal + upperbonus)
+        document.getElementById("bottomUpperTotal").value = String(uppertotal + upperbonus)
+    }
+
+    function calcYahtzeeBonus() {
+        document.getElementById("bonusYahtzeeScore").value = String(0)
+        if (document.getElementById("yahtzeeList").value.length > 0 &&
+            parseInt(document.getElementById("yahtzeeList").value) > parseInt(0)) {
+            let tempResult = 0;
+        
+            if (document.getElementById("cb1").checked) {tempResult += 100}
+            if (document.getElementById("cb2").checked) {tempResult += 100}
+            if (document.getElementById("cb3").checked) {tempResult += 100}
+
+            document.getElementById("bonusYahtzeeScore").value = String(tempResult)
+        }
+    }
+
+    function calcLowerTotal() {
+        let threeKindValue = document.getElementById("threeKindList").value
+        let fourKindValue = document.getElementById("fourKindList").value
+        let fullHouseValue = document.getElementById("fullHouseList").value
+        let smStraightValue = document.getElementById("smStraightList").value
+        let lgStraightValue = document.getElementById("lgStraightList").value
+        let yahtzeeValue = document.getElementById("yahtzeeList").value
+        let bonusYahtzeeValue = document.getElementById("bonusYahtzeeScore").value
+
+        let tempResult = 0
+        if (threeKindValue.length > 0) {tempResult += parseInt(threeKindValue)}
+        if (fourKindValue.length > 0) {tempResult += parseInt(fourKindValue)}
+        if (fullHouseValue.length > 0) {tempResult += parseInt(fullHouseValue)}
+        if (smStraightValue.length > 0) {tempResult += parseInt(smStraightValue)}
+        if (lgStraightValue.length > 0) {tempResult += parseInt(lgStraightValue)}
+        if (yahtzeeValue.length > 0) {tempResult += parseInt(yahtzeeValue)}
+        if (bonusYahtzeeValue.length > 0) {tempResult += parseInt(bonusYahtzeeValue)}
+
+        document.getElementById("lowerTotal").value = String(tempResult)
+    }
+
+    function calcGrandTotal() {
+        uppertotal = parseInt(document.getElementById("bottomUpperTotal").value)
+        lowertotal = parseInt(document.getElementById("lowerTotal").value)
+        document.getElementById("grandTotal").value = String(uppertotal + lowertotal)
+    }
+
+</script>
+
+</html>
